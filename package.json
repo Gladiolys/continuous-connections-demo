@@ -1,0 +1,38 @@
+{
+  "name": "continuous-connections-demo",
+  "version": "1.0.0",
+  "description": "Demo",
+  "scripts": {
+    "lint": "eslint \"packages/**/*.{j,t}s{,x}\"",
+    "format": "prettier --write \"packages/**/*\"",
+    "start:regular-pooling": "node ./packages/regular-pooling/server.js",
+    "start:long-pooling": "node ./packages/long-pooling/server.js",
+    "start:server-side-events": "node ./packages/server-side-events/server.js",
+    "start:web-socket": "node ./packages/web-socket/server.js",
+    "start:rsocket-server": "node ./packages/rsocket/server.js",
+    "start:rsocket-client": "vite serve --config ./packages/rsocket/vite.config.js",
+    "build:rsocket-client": "vite build --config ./packages/rsocket/vite.config.js"
+  },
+  "author": "Dmitriy Vergiles",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.26.1",
+    "buffer": "^6.0.3",
+    "rsocket-core": "^0.0.27",
+    "rsocket-flowable": "^0.0.27",
+    "rsocket-websocket-client": "^0.0.27",
+    "rsocket-websocket-server": "^0.0.27",
+    "utf-8-validate": "^5.0.7",
+    "ws": "^8.2.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.12.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "prettier": "^2.6.2",
+    "vite": "^2.9.1"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "extends": ["airbnb", "airbnb/hooks"],
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "semi": [2, "never"],
+    "operator-linebreak": "off",
+    "no-inner-declarations": "off",
+    "no-plusplus": "off",
+    "class-methods-use-this": "off",
+    "comma-dangle": "off"
+  }
+}

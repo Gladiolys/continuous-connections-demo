@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Regular Pooling Demo</title>
+    <style>
+      .message {
+        background-color: rgba(255, 0, 0, 0.5);
+      }
+      .content {
+        background-color: rgba(0, 255, 0, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Regular Pooling Demo</h1>
+    <script>
+      function showMessage(text) {
+        const messageDiv = document.createElement('div')
+        messageDiv.className = 'message'
+        messageDiv.innerText = text
+        document.body.append(messageDiv)
+      }
+
+      function showContent(content) {
+        const contentDiv = document.createElement('div')
+        contentDiv.className = 'content'
+        contentDiv.innerText = JSON.stringify(content)
+        document.body.append(contentDiv)
+      }
+
+      async function regularPooling(url, interval) {
+        const response = await fetch(url)
+
+        if (response.status !== 200) {
+          showMessage(response.statusText)
+        } else {
+          let content = await response.json()
+          showContent(content)
+        }
+
+        // Ждём заданный интервал
+        await new Promise((resolve) => setTimeout(resolve, interval))
+        await regularPooling(url, interval)
+      }
+
+      regularPooling('http://localhost:3000', 5000)
+    </script>
+  </body>
+</html>

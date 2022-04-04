@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Web Socket Demo</title>
+    <style>
+      .message {
+        background-color: rgba(255, 0, 0, 0.5);
+      }
+      .content {
+        background-color: rgba(0, 255, 0, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Web Socket Demo</h1>
+    <script>
+      function showMessage(text) {
+        const messageDiv = document.createElement('div')
+        messageDiv.className = 'message'
+        messageDiv.innerText = text
+        document.body.append(messageDiv)
+      }
+
+      function showContent(content) {
+        const contentDiv = document.createElement('div')
+        contentDiv.className = 'content'
+        contentDiv.innerText = content
+        document.body.append(contentDiv)
+      }
+
+      const socket = new WebSocket('ws://localhost:3003')
+
+      socket.onopen = function (e) {
+        showMessage('Соединение открыто')
+        socket.send('Привет! Хочу данные!')
+      }
+
+      socket.onclose = function (event) {
+        if (event.wasClean) {
+          showMessage(`Соединение закрыто чисто, код=${event.code} причина=${event.reason}`)
+        } else {
+          // сетевая ошибка, или сервер прервал соединение
+          showMessage('Соединение прервано')
+        }
+      }
+
+      socket.onmessage = function (event) {
+        showContent(event.data)
+      }
+
+      socket.onerror = function (error) {
+        showMessage(`error: ${error.message}`)
+      }
+    </script>
+  </body>
+</html>
